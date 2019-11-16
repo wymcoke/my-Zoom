@@ -76,17 +76,31 @@
      */
     //获取元素
     //注册事件
-    let mask =document.querySelector('.mask');
-    let small =document.querySelector('.small');
-    let big=document.querySelector('.big');
-    small.onmouseover=function(){
-        mask.style.display='block';
-        big.style.display='block';
+    //鼠标移入移出
+    let mask = document.querySelector('.mask');
+    let small = document.querySelector('.small');
+    let big = document.querySelector('.big');
+    small.onmouseover = function () {
+        mask.style.display = 'block';
+        big.style.display = 'block';
     }
-    small.onmouseout=function(){
-        mask.style.display='none';
-        big.style.display='none';
+    small.onmouseout = function () {
+        mask.style.display = 'none';
+        big.style.display = 'none';
     }
+    //鼠标在小图上的移动事件
+    let box = document.querySelector('.box');
+    small.onmousemove = function (e) {
+        let mx = e.pageX;
+        let my = e.pageY;
+        let x = mx - box.offsetLeft - mask.offsetWidth / 2;
+        let y = my - box.offsetTop - mask.offsetHeight / 2;
+        mask.style.left = x + 'px';
+        mask.style.top = y + 'px';
+
+    }
+
+
 
 
 
