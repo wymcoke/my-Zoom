@@ -74,6 +74,22 @@
     2.鼠标移动，遮罩和大图同时移动
     3.鼠标移出，遮罩和大图消失
      */
+    //获取元素
+    //注册事件
+    let mask =document.querySelector('.mask');
+    let small =document.querySelector('.small');
+    let big=document.querySelector('.big');
+    small.onmouseover=function(){
+        mask.style.display='block';
+        big.style.display='block';
+    }
+    small.onmouseout=function(){
+        mask.style.display='none';
+        big.style.display='none';
+    }
+
+
+
 </script>
 
 </html>
