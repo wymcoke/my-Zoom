@@ -95,9 +95,18 @@
         let my = e.pageY;
         let x = mx - box.offsetLeft - mask.offsetWidth / 2;
         let y = my - box.offsetTop - mask.offsetHeight / 2;
+        //遮罩可以在小图外移动，需要优化，让遮罩只会在小图内移动
+        // if (x <= 0) {
+        //     x = 0;
+        // }
+        x = x <= 0 ? 0 : x
+        y = y <= 0 ? 0 : y
+        let maxX = small.offsetWidth - mask.offsetWidth;
+        let maxY = small.offsetHeight - mask.offsetHeight;
+        x = x >= maxX ? maxX : x;
+        y = y >= maxY ? maxY : y;
         mask.style.left = x + 'px';
         mask.style.top = y + 'px';
-
     }
 
 
