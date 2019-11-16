@@ -80,6 +80,8 @@
     let mask = document.querySelector('.mask');
     let small = document.querySelector('.small');
     let big = document.querySelector('.big');
+    let box = document.querySelector('.box');
+    let bigImg = document.querySelector('.big>img')
     small.onmouseover = function () {
         mask.style.display = 'block';
         big.style.display = 'block';
@@ -89,7 +91,7 @@
         big.style.display = 'none';
     }
     //鼠标在小图上的移动事件
-    let box = document.querySelector('.box');
+
     small.onmousemove = function (e) {
         let mx = e.pageX;
         let my = e.pageY;
@@ -107,14 +109,22 @@
         y = y >= maxY ? maxY : y;
         mask.style.left = x + 'px';
         mask.style.top = y + 'px';
+
+        //设置当鼠标在小图上移动时，大图做出相应反应
+
+        // 让大图随着鼠标的移动而移动
+        // 我们通过画图分析
+        // 大图的位置 = 大图的最大移动距离 * 遮罩的当前位置 / 遮罩的最大移动距离
+
+        // 先求出大图的最大移动距离 = 大图的宽高 - 大盒子的宽高
+        let bigImgMaxX = bigImg.offsetWidth - big.offsetWidth;
+        let bigImgMaxY = bigImg.offsetHeight - big.offsetHeight;
+        let bigImgX=bigImgMaxX*x/maxX;
+        let bigImgY=bigImgMaxY*y/maxY;
+        bigImg.style.left=-bigImgX+'px';
+        bigImg.style.top=-bigImgY+'px';
     }
-     //设置当鼠标在小图上移动时，大图做出相应反应
 
-     // 让大图随着鼠标的移动而移动
-     // 我们通过画图分析
-     // 大图的位置 = 大图的最大移动距离 * 遮罩的当前位置 / 遮罩的最大移动距离
-
-     // 先求出大图的最大移动距离 = 大图的宽高 - 大盒子的宽高
 
 
 
